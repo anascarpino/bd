@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `ingressos` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `ingressos`;
--- MySQL dump 10.13  Distrib 5.5.55, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: ingressos
+-- Host: localhost    Database: ingressos
 -- ------------------------------------------------------
--- Server version	5.5.55-0ubuntu0.14.04.1
+-- Server version	5.7.18-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,7 +24,8 @@ DROP TABLE IF EXISTS `ambiente`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ambiente` (
   `id_ambiente` int(11) NOT NULL,
-  `nome` enum('Estádio','Auditório','Ginásio','Clube','Cinema','CasaShow','Teatro') NOT NULL,
+  `nome` varchar(45) DEFAULT NULL,
+  `tipo` enum('Estádio','Auditório','Ginásio','Clube','Cinema','CasaShow','Teatro') NOT NULL,
   `capacidade` int(11) DEFAULT NULL,
   `endereco` varchar(50) NOT NULL,
   `descricao` varchar(50) DEFAULT NULL,
@@ -42,6 +41,33 @@ CREATE TABLE `ambiente` (
 LOCK TABLES `ambiente` WRITE;
 /*!40000 ALTER TABLE `ambiente` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ambiente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `autenticacao`
+--
+
+DROP TABLE IF EXISTS `autenticacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `autenticacao` (
+  `id_autenticacao` int(11) NOT NULL,
+  `login` varchar(30) DEFAULT NULL,
+  `senha` varchar(8) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_autenticacao`),
+  KEY `fk_usuario_idx` (`id_usuario`),
+  CONSTRAINT `fk_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `autenticacao`
+--
+
+LOCK TABLES `autenticacao` WRITE;
+/*!40000 ALTER TABLE `autenticacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `autenticacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -69,6 +95,31 @@ CREATE TABLE `componentes` (
 LOCK TABLES `componentes` WRITE;
 /*!40000 ALTER TABLE `componentes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `componentes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `compra`
+--
+
+DROP TABLE IF EXISTS `compra`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `compra` (
+  `id_compra` int(11) NOT NULL,
+  `valor_unitario` double DEFAULT NULL,
+  `valor_total` double DEFAULT NULL,
+  `quantidade` int(11) NOT NULL,
+  PRIMARY KEY (`id_compra`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compra`
+--
+
+LOCK TABLES `compra` WRITE;
+/*!40000 ALTER TABLE `compra` DISABLE KEYS */;
+/*!40000 ALTER TABLE `compra` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -148,6 +199,32 @@ LOCK TABLES `ingresso` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ingresso_compra`
+--
+
+DROP TABLE IF EXISTS `ingresso_compra`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ingresso_compra` (
+  `id_compra` int(11) NOT NULL,
+  `id_ingresso` int(11) NOT NULL,
+  PRIMARY KEY (`id_compra`,`id_ingresso`),
+  KEY `fk_ingresso_idx` (`id_ingresso`),
+  CONSTRAINT `fk_compra` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ingresso` FOREIGN KEY (`id_ingresso`) REFERENCES `ingresso` (`id_ingresso`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ingresso_compra`
+--
+
+LOCK TABLES `ingresso_compra` WRITE;
+/*!40000 ALTER TABLE `ingresso_compra` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ingresso_compra` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `show`
 --
 
@@ -180,14 +257,14 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuario` (
-  `idusuario` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nome` varchar(50) DEFAULT NULL,
   `cpf` varchar(11) DEFAULT NULL,
   `endereco` varchar(50) DEFAULT NULL,
   `telefone` varchar(10) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
   `dNascimento` date DEFAULT NULL,
-  PRIMARY KEY (`idusuario`)
+  PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -209,4 +286,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-23 10:54:40
+-- Dump completed on 2017-05-24 10:43:34
