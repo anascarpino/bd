@@ -122,7 +122,7 @@ CREATE TABLE `esporte` (
 
 LOCK TABLES `esporte` WRITE;
 /*!40000 ALTER TABLE `esporte` DISABLE KEYS */;
-INSERT INTO `esporte` VALUES (1,'Futebol','Flamengo','Vasco',3),(2,'Futebol','Rio Branco','Desportiva',8),(3,'Basquete','Cleveland Cavaliers','Golden State Warriors',9),(4,'Futebol','Bahia','Atlético-GO',12),(5,'Futebol','Grêmio','Vasco',13),(6,'Futebol','Flamengo','Botafogo',15);
+INSERT INTO `esporte` VALUES (1,'Futebol','Flamengo','Vasco',3),(2,'Futebol','Rio Branco','Desportiva',8),(3,'Basquete','Cleveland Cavaliers','Golden State Warriors',9),(4,'Futebol','Bahia','Atlético-GO',12),(5,'Futebol','Grêmio','Vasco',13),(6,'Futebol','Flamengo','Botafogo',15),(7,'Volei','Brasil','Franca',22),(8,'Volei','Alemanha','Italia',23),(9,'Tenis','Federer','Dadal',24),(10,'Polo-Aquatico','Vasco','Flamengo',25);
 /*!40000 ALTER TABLE `esporte` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +155,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'Tour Diva',3,'2017-08-26 22:00:00','2017-04-11 12:30:00',NULL,2),(2,'Humberto Gessinger',3,'2017-06-10 21:30:00','2017-03-20 07:00:00',NULL,3),(3,'Flamengo x Vasco ',4,'2017-06-17 18:00:00','2017-06-01 11:55:00',NULL,4),(4,'Os Barbixas',2,'2017-04-02 21:00:00','2017-01-13 21:00:00',NULL,6),(5,'Melhores do Mundo',2,'2017-09-21 19:30:00','2017-02-02 08:49:00',NULL,8),(6,'Maratona de Filmes Saga Senhor dos Anéis',1,'2017-10-07 10:00:00','2017-06-01 06:00:00',NULL,7),(7,'Estréia filme A Múmia',1,'2017-06-08 00:00:00','2016-11-30 09:05:00','Uma antiga rainha está mumificada',10),(8,'Rio Branco x Desportiva',4,'2017-09-10 10:00:00','2017-07-16 08:00:00',NULL,4),(9,'Cleveland Cavaliers x Golden State Warriors',4,'2017-06-01 18:00:00','2017-03-14 23:00:00',NULL,11),(10,'Estreia Um Tio Quase Perfeito',1,'2017-06-15 00:00:00','2017-04-25 14:00:00','',7),(11,'Estreia Um Tio Quase Perfeito',1,'2017-06-15 00:00:00','2017-04-25 14:00:00',NULL,10),(12,'Bahia x Atlético-GO',4,'2017-06-03 21:00:00','2017-05-20 05:40:00',NULL,4),(13,'Grêmio x Vasco',4,'2017-06-04 16:00:00','2017-05-20 18:30:00',NULL,12),(14,'Estreia Meu Malvado Favorito 3',1,'2017-06-29 00:00:00','2016-12-12 00:00:00',NULL,10),(15,'Flamengo x Botafogo',4,'2017-06-04 15:00:00','2017-05-20 09:28:00',NULL,4),(16,'Show Ed Sheeran',3,'2017-08-30 22:00:00','2014-04-05 00:26:00',NULL,12),(17,'Anitta',3,'2017-12-24 23:00:00','2017-07-01 10:50:00',NULL,2),(18,'Capital Inicial',3,'2017-03-14 21:00:00','2016-11-16 03:04:00',NULL,3),(19,'Skank',3,'2017-02-03 20:00:00','2016-11-25 15:25:00',NULL,11),(20,'Estreia Planeta dos Macacos: A Guerra',1,'2017-08-03 00:00:00','2017-04-16 12:30:25',NULL,10),(21,'Show Nx Zero',3,'2017-11-25 21:00:00','2017-06-01 11:24:00',NULL,3);
+INSERT INTO `evento` VALUES (1,'Tour Diva',3,'2017-08-26 22:00:00','2017-04-11 12:30:00',NULL,2),(2,'Humberto Gessinger',3,'2017-06-10 21:30:00','2017-03-20 07:00:00',NULL,3),(3,'Flamengo x Vasco ',4,'2017-06-17 18:00:00','2017-06-01 11:55:00',NULL,4),(4,'Os Barbixas',2,'2017-04-02 21:00:00','2017-01-13 21:00:00',NULL,6),(5,'Melhores do Mundo',2,'2017-09-21 19:30:00','2017-02-02 08:49:00',NULL,8),(6,'Maratona de Filmes Saga Senhor dos Anéis',1,'2017-10-07 10:00:00','2017-06-01 06:00:00',NULL,7),(7,'Estréia filme A Múmia',1,'2017-06-08 00:00:00','2016-11-30 09:05:00','Uma antiga rainha está mumificada',10),(8,'Rio Branco x Desportiva',4,'2017-09-10 10:00:00','2017-07-16 08:00:00',NULL,4),(9,'Cleveland Cavaliers x Golden State Warriors',4,'2017-06-01 18:00:00','2017-03-14 23:00:00',NULL,11),(10,'Estreia Um Tio Quase Perfeito',1,'2017-06-15 00:00:00','2017-04-25 14:00:00','',7),(11,'Estreia Um Tio Quase Perfeito',1,'2017-06-15 00:00:00','2017-04-25 14:00:00',NULL,10),(12,'Bahia x Atlético-GO',4,'2017-06-03 21:00:00','2017-05-20 05:40:00',NULL,4),(13,'Grêmio x Vasco',4,'2017-06-04 16:00:00','2017-05-20 18:30:00',NULL,12),(14,'Estreia Meu Malvado Favorito 3',1,'2017-06-29 00:00:00','2016-12-12 00:00:00',NULL,10),(15,'Flamengo x Botafogo',4,'2017-06-04 15:00:00','2017-05-20 09:28:00',NULL,4),(16,'Show Ed Sheeran',3,'2017-08-30 22:00:00','2014-04-05 00:26:00',NULL,12),(17,'Anitta',3,'2017-12-24 23:00:00','2017-07-01 10:50:00',NULL,2),(18,'Capital Inicial',3,'2017-03-14 21:00:00','2016-11-16 03:04:00',NULL,3),(19,'Skank',3,'2017-02-03 20:00:00','2016-11-25 15:25:00',NULL,11),(20,'Estreia Planeta dos Macacos: A Guerra',1,'2017-08-03 00:00:00','2017-04-16 12:30:25',NULL,10),(21,'Show Nx Zero',3,'2017-11-25 21:00:00','2017-06-01 11:24:00',NULL,3),(22,'Brasil x Franca',4,'2017-06-25 15:00:00','2017-06-25 17:00:00',NULL,4),(23,'Alemanha x Italia',4,'2017-06-25 17:00:00','2017-06-25 19:00:00',NULL,4),(24,'Federer x Nadal',4,'2017-07-01 13:00:00','2017-07-01 17:00:00',NULL,4),(25,'Vasco x Flamengo',4,'2017-07-10 13:00:00','2017-07-10 15:00:00',NULL,4),(26,'Estreia Peppa Pig',1,'2017-08-01 15:00:00','2017-08-01 16:00:00',NULL,10),(27,'Estreia Logan',1,'2017-08-01 19:00:00','2017-08-01 20:50:00',NULL,10),(28,'Cada um Com o Seu Problema',2,'2017-04-02 21:00:00','2017-04-02 22:00:00',NULL,6);
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +185,7 @@ CREATE TABLE `filme` (
 
 LOCK TABLES `filme` WRITE;
 /*!40000 ALTER TABLE `filme` DISABLE KEYS */;
-INSERT INTO `filme` VALUES (1,'A Múmia','Suspense','14','01:41:20',7),(2,'O Senhor Dos Anéis: A Sociedade do Anel','Fantasia','10','02:57:01',6),(3,'O Senhor Dos Anéis: As Duas Torres','Fantasia','10','02:42:29',6),(4,'O Senhor Dos Anéis: O Retorno do Rei','Fantasia','10','03:01:10',6),(5,'Meu Malvado Favorito 3','Animação','Livre','01:29:00',14),(6,'Um Tio Quase Perfeito','Comédia',NULL,NULL,10),(7,'Planeta dos Macacos: A Guerra','Ação','14',NULL,20);
+INSERT INTO `filme` VALUES (1,'A Múmia','Suspense','14','01:41:20',7),(2,'O Senhor Dos Anéis: A Sociedade do Anel','Fantasia','10','02:57:01',6),(3,'O Senhor Dos Anéis: As Duas Torres','Fantasia','10','02:42:29',6),(4,'O Senhor Dos Anéis: O Retorno do Rei','Fantasia','10','03:01:10',6),(5,'Meu Malvado Favorito 3','Animação','Livre','01:29:00',14),(6,'Um Tio Quase Perfeito','Comédia',NULL,NULL,10),(7,'Planeta dos Macacos: A Guerra','Ação','14',NULL,20),(8,'Peppa Pig','Animado','0',1:00:00,26),(9,'Logan','Ação','18','1:50:00',27);
 /*!40000 ALTER TABLE `filme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +265,7 @@ CREATE TABLE `peca` (
 
 LOCK TABLES `peca` WRITE;
 /*!40000 ALTER TABLE `peca` DISABLE KEYS */;
-INSERT INTO `peca` VALUES (1,'Improvável','Os Barbixas','Comédia',4),(2,'Hermanoteu na Terra de Godah','Melhores do Mundo','Comédia',5);
+INSERT INTO `peca` VALUES (1,'Improvável','Os Barbixas','Comédia',4),(2,'Hermanoteu na Terra de Godah','Melhores do Mundo','Comédia',5),(3,'Cada um Com o Seu Problema','Marcelo Medici','Comédia',28;
 /*!40000 ALTER TABLE `peca` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,3 +361,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2017-06-01 17:03:48
+
