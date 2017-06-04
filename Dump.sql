@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `ingressos` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `ingressos`;
+-- MySQL dump 10.13  Distrib 5.5.55, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: ingressos
+-- Host: 127.0.0.1    Database: ingressos
 -- ------------------------------------------------------
--- Server version	5.7.18-log
+-- Server version	5.5.55-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -58,7 +60,7 @@ CREATE TABLE `autenticacao` (
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_autenticacao`),
   KEY `fk_usuario_idx` (`id_usuario`),
-  CONSTRAINT `fk_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -88,7 +90,7 @@ CREATE TABLE `compra` (
   `dCompra` datetime DEFAULT NULL,
   PRIMARY KEY (`id_compra`),
   KEY `fk_usuario_idx` (`id_usuario`),
-  CONSTRAINT `fk_usuario_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_usuario_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -98,7 +100,7 @@ CREATE TABLE `compra` (
 
 LOCK TABLES `compra` WRITE;
 /*!40000 ALTER TABLE `compra` DISABLE KEYS */;
-INSERT INTO `compra` VALUES (1,12.5,37.5,3,9,'2017-08-02 23:59:00'),(2,119.99,359.97,3,2,'2017-07-01 10:51:00'),(3,49.9,49.9,1,6,'2017-03-03 12:15:00'),(4,25.5,76.5,3,4,'2017-09-12 03:33:00');
+INSERT INTO `compra` VALUES (1,12.5,37.5,3,9,'2017-08-02 23:59:00'),(2,119.99,359.97,3,2,'2017-07-01 10:51:00'),(3,49.9,49.9,1,6,'2017-03-03 12:15:00'),(4,25.5,76.5,3,4,'2017-09-12 03:33:00'),(5,100,200,2,10,'2017-06-02 06:52:13'),(6,90,90,1,5,'2017-01-06 13:47:00'),(7,40,40,1,9,'2017-03-04 12:56:23'),(8,70,70,1,11,'2017-05-10 11:17:38'),(9,35,35,1,6,'2017-07-17 18:10:58');
 /*!40000 ALTER TABLE `compra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +151,7 @@ CREATE TABLE `evento` (
   PRIMARY KEY (`id_evento`),
   KEY `fk_tipo_idx` (`id_tipo`),
   KEY `fk_ambiente_1_idx` (`id_ambiente`),
-  CONSTRAINT `fk_ambiente` FOREIGN KEY (`id_ambiente`) REFERENCES `ambiente` (`id_ambiente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ambiente` FOREIGN KEY (`id_ambiente`) REFERENCES `ambiente` (`id_ambiente`) ON DELETE SET NULL ON UPDATE NO ACTION,
   CONSTRAINT `fk_tipo` FOREIGN KEY (`id_tipo`) REFERENCES `tipo` (`id_tipo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -160,7 +162,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'Tour Diva',3,'2017-08-26 22:00:00','2017-04-11 12:30:00',NULL,2),(2,'Humberto Gessinger',3,'2017-06-10 21:30:00','2017-03-20 07:00:00',NULL,3),(3,'Flamengo x Vasco ',4,'2017-06-17 18:00:00','2017-06-01 11:55:00',NULL,4),(4,'Os Barbixas',2,'2017-04-02 21:00:00','2017-01-13 21:00:00',NULL,6),(5,'Melhores do Mundo',2,'2017-09-21 19:30:00','2017-02-02 08:49:00',NULL,8),(6,'Maratona de Filmes Saga Senhor dos Anéis',1,'2017-10-07 10:00:00','2017-06-01 06:00:00',NULL,7),(7,'Estréia filme A Múmia',1,'2017-06-08 00:00:00','2016-11-30 09:05:00','Uma antiga rainha está mumificada',10),(8,'Rio Branco x Desportiva',4,'2017-09-10 10:00:00','2017-07-16 08:00:00',NULL,4),(9,'Cleveland Cavaliers x Golden State Warriors',4,'2017-06-01 18:00:00','2017-03-14 23:00:00',NULL,11),(10,'Estreia Um Tio Quase Perfeito',1,'2017-06-15 00:00:00','2017-04-25 14:00:00','',7),(11,'Estreia Um Tio Quase Perfeito',1,'2017-06-15 00:00:00','2017-04-25 14:00:00',NULL,10),(12,'Bahia x Atlético-GO',4,'2017-06-03 21:00:00','2017-05-20 05:40:00',NULL,4),(13,'Grêmio x Vasco',4,'2017-06-04 16:00:00','2017-05-20 18:30:00',NULL,12),(14,'Estreia Meu Malvado Favorito 3',1,'2017-06-29 00:00:00','2016-12-12 00:00:00',NULL,10),(15,'Flamengo x Botafogo',4,'2017-06-04 15:00:00','2017-05-20 09:28:00',NULL,4),(16,'Show Ed Sheeran',3,'2017-08-30 22:00:00','2014-04-05 00:26:00',NULL,12),(17,'Anitta',3,'2017-12-24 23:00:00','2017-07-01 10:50:00',NULL,2),(18,'Capital Inicial',3,'2017-03-14 21:00:00','2016-11-16 03:04:00',NULL,3),(19,'Skank',3,'2017-02-03 20:00:00','2016-11-25 15:25:00',NULL,11),(20,'Estreia Planeta dos Macacos: A Guerra',1,'2017-08-03 00:00:00','2017-04-16 12:30:25',NULL,10),(21,'Show Nx Zero',3,'2017-11-25 21:00:00','2017-06-01 11:24:00',NULL,3),(22,'Brasil x Franca',4,'2017-06-25 15:00:00','2017-06-25 17:00:00',NULL,4),(23,'Alemanha x Italia',4,'2017-06-25 17:00:00','2017-06-25 19:00:00',NULL,4),(24,'Federer x Nadal',4,'2017-07-01 13:00:00','2017-07-01 17:00:00',NULL,4),(25,'Vasco x Flamengo',4,'2017-07-10 13:00:00','2017-07-10 15:00:00',NULL,4),(26,'Estreia Peppa Pig',1,'2017-08-01 15:00:00','2017-08-01 16:00:00',NULL,10),(27,'Estreia Logan',1,'2017-08-01 19:00:00','2017-08-01 20:50:00',NULL,10),(28,'Cada um Com o Seu Problema',2,'2017-04-02 21:00:00','2017-04-02 22:00:00',NULL,6);
+INSERT INTO `evento` VALUES (1,'Tour Diva',3,'2017-08-26 22:00:00','2017-04-11 12:30:00',NULL,2),(2,'Humberto Gessinger',3,'2017-06-10 21:30:00','2017-03-20 07:00:00',NULL,3),(3,'Flamengo x Vasco ',4,'2017-06-17 18:00:00','2017-06-01 11:55:00',NULL,4),(4,'Os Barbixas',2,'2017-04-02 21:00:00','2017-01-13 21:00:00',NULL,6),(5,'Melhores do Mundo',2,'2017-09-21 19:30:00','2017-02-02 08:49:00',NULL,8),(6,'Maratona de Filmes Saga Senhor dos Anéis',1,'2017-10-07 10:00:00','2017-06-01 06:00:00',NULL,7),(7,'Estréia filme A Múmia',1,'2017-06-08 00:00:00','2016-11-30 09:05:00','Uma antiga rainha está mumificada',10),(8,'Rio Branco x Desportiva',4,'2017-09-10 10:00:00','2017-07-16 08:00:00',NULL,4),(9,'Cleveland Cavaliers x Golden State Warriors',4,'2017-06-01 18:00:00','2017-03-14 23:00:00',NULL,11),(10,'Estreia Um Tio Quase Perfeito',1,'2017-06-15 00:00:00','2017-04-25 14:00:00','',7),(11,'Estreia Um Tio Quase Perfeito',1,'2017-06-15 00:00:00','2017-04-25 14:00:00',NULL,10),(12,'Bahia x Atlético-GO',4,'2017-06-03 21:00:00','2017-05-20 05:40:00',NULL,4),(13,'Grêmio x Vasco',4,'2017-06-04 16:00:00','2017-05-20 18:30:00',NULL,12),(14,'Estreia Meu Malvado Favorito 3',1,'2017-06-29 00:00:00','2016-12-12 00:00:00',NULL,10),(15,'Flamengo x Botafogo',4,'2017-06-04 15:00:00','2017-05-20 09:28:00',NULL,4),(16,'Show Ed Sheeran',3,'2017-08-30 22:00:00','2014-04-05 00:26:00',NULL,12),(17,'Anitta',3,'2017-12-24 23:00:00','2017-07-01 10:50:00',NULL,2),(18,'Capital Inicial',3,'2017-03-14 21:00:00','2016-11-16 03:04:00',NULL,3),(19,'Skank',3,'2017-02-03 20:00:00','2016-11-25 15:25:00',NULL,11),(20,'Estreia Planeta dos Macacos: A Guerra',1,'2017-08-03 00:00:00','2017-04-16 12:30:25',NULL,10),(21,'Show Nx Zero',3,'2017-11-25 21:00:00','2017-06-01 11:24:00',NULL,3),(22,'Brasil x Franca',4,'2017-06-25 15:00:00','2017-06-25 17:00:00',NULL,4),(23,'Alemanha x Italia',4,'2017-06-25 17:00:00','2017-06-25 19:00:00',NULL,4),(24,'Federer x Nadal',4,'2017-07-01 13:00:00','2017-07-01 17:00:00',NULL,4),(25,'Vasco x Flamengo',4,'2017-07-10 13:00:00','2017-07-10 15:00:00',NULL,4),(26,'Estreia Peppa Pig',1,'2017-08-01 15:00:00','2017-08-01 16:00:00',NULL,10),(27,'Estreia Logan',1,'2017-08-01 19:00:00','2017-08-01 20:50:00',NULL,10),(28,'Cada um Com o Seu Problema',2,'2017-04-02 21:00:00','2017-04-02 22:00:00',NULL,6),(29,'Purpose',3,'2017-11-05 20:00:00','2017-02-01 12:25:05',NULL,12),(30,'Pabblo Vittar',3,'2017-02-25 23:00:00','2016-05-26 06:21:38',NULL,2),(31,'Essencial',3,'2017-06-08 21:00:00','2017-03-21 11:14:50',NULL,3),(32,'Peppa Pig',2,'2018-01-01 17:00:00','2017-06-06 10:25:06',NULL,11),(33,'Whinderson Nunes',2,'2017-07-18 21:00:00','2017-03-14 12:32:00',NULL,6),(34,'Meu Passado me Condena',2,'2017-01-24 21:00:00','2016-12-02 14:51:43',NULL,6),(35,'A Bela e a Fera',2,'2016-09-10 18:30:00','2016-07-23 04:52:21',NULL,11),(36,'Boca Rosa',2,'2017-11-17 19:30:00','2017-06-04 11:56:08',NULL,6),(37,'Harry Potter e a Criança Amaldiçoada',2,'2017-11-25 20:00:00','2016-08-26 15:54:21',NULL,11),(38,'Os Miseráveis',2,'2016-12-24 22:00:00','2017-10-10 17:16:30',NULL,8),(39,'Assassinato no Expresso do Oriente',1,'2017-11-23 00:00:00','2017-06-04 12:04:03',NULL,7);
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +192,7 @@ CREATE TABLE `filme` (
 
 LOCK TABLES `filme` WRITE;
 /*!40000 ALTER TABLE `filme` DISABLE KEYS */;
-INSERT INTO `filme` VALUES (1,'A Múmia','Suspense','14','01:41:20',7),(2,'O Senhor Dos Anéis: A Sociedade do Anel','Fantasia','10','02:57:01',6),(3,'O Senhor Dos Anéis: As Duas Torres','Fantasia','10','02:42:29',6),(4,'O Senhor Dos Anéis: O Retorno do Rei','Fantasia','10','03:01:10',6),(5,'Meu Malvado Favorito 3','Animação','Livre','01:29:00',14),(6,'Um Tio Quase Perfeito','Comédia',NULL,NULL,10),(7,'Planeta dos Macacos: A Guerra','Ação','14',NULL,20),(8,'Peppa Pig','Animado','0','00:00:01',26),(9,'Logan','Ação','18','01:50:00',27);
+INSERT INTO `filme` VALUES (1,'A Múmia','Suspense','14','01:41:20',7),(2,'O Senhor Dos Anéis: A Sociedade do Anel','Fantasia','10','02:57:01',6),(3,'O Senhor Dos Anéis: As Duas Torres','Fantasia','10','02:42:29',6),(4,'O Senhor Dos Anéis: O Retorno do Rei','Fantasia','10','03:01:10',6),(5,'Meu Malvado Favorito 3','Animação','Livre','01:29:00',14),(6,'Um Tio Quase Perfeito','Comédia',NULL,NULL,10),(7,'Planeta dos Macacos: A Guerra','Ação','14',NULL,20),(8,'Peppa Pig','Animado','0','00:00:01',26),(9,'Logan','Ação','18','01:50:00',27),(10,'Assassinato no Expresso do Oriente','Suspense','14',NULL,39);
 /*!40000 ALTER TABLE `filme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,13 +207,13 @@ CREATE TABLE `ingresso` (
   `id_ingresso` int(11) NOT NULL,
   `setor` varchar(10) DEFAULT NULL,
   `cadeira` int(11) DEFAULT NULL,
-  `id_evento` int(11) DEFAULT NULL,
-  `id_compra` int(11) DEFAULT NULL,
+  `id_evento` int(11) NOT NULL,
+  `id_compra` int(11) NOT NULL,
   PRIMARY KEY (`id_ingresso`),
   KEY `fk_evento_idx` (`id_evento`),
   KEY `fk_compra_idx` (`id_compra`),
-  CONSTRAINT `fk_compra` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_evento_2` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_compra` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id_compra`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_evento_2` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -221,7 +223,7 @@ CREATE TABLE `ingresso` (
 
 LOCK TABLES `ingresso` WRITE;
 /*!40000 ALTER TABLE `ingresso` DISABLE KEYS */;
-INSERT INTO `ingresso` VALUES (1,'A',1,6,4),(2,'A',13,6,4),(3,'3',50,20,1),(4,'Azul',100,5,3),(5,'Vermelho',2,17,2),(6,'B',5,6,4),(7,'Azul',87,17,2),(8,'Amarelo',17,17,2),(9,'1',1,20,1),(10,'2',1,20,1);
+INSERT INTO `ingresso` VALUES (1,'A',1,6,4),(2,'A',13,6,4),(3,'3',50,20,1),(4,'Azul',100,5,3),(5,'Vermelho',2,17,2),(6,'B',5,6,4),(7,'Azul',87,17,2),(8,'Amarelo',17,17,2),(9,'1',1,20,1),(10,'2',1,20,1),(11,'Prata',5,37,5),(12,'Prata',6,37,5),(13,'Dourado',65,29,6),(14,'B',180,2,7),(15,'Vip',9,9,8),(16,'Amarelo',125,1,9);
 /*!40000 ALTER TABLE `ingresso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +252,7 @@ CREATE TABLE `peca` (
 
 LOCK TABLES `peca` WRITE;
 /*!40000 ALTER TABLE `peca` DISABLE KEYS */;
-INSERT INTO `peca` VALUES (1,'Improvável','Os Barbixas','Comédia',4),(2,'Hermanoteu na Terra de Godah','Melhores do Mundo','Comédia',5),(3,'Cada um Com o Seu Problema','Marcelo Medici','Comédia',28);
+INSERT INTO `peca` VALUES (1,'Improvável','Os Barbixas','Comédia',4),(2,'Hermanoteu na Terra de Godah','Melhores do Mundo','Comédia',5),(3,'Cada um Com o Seu Problema','Marcelo Medici','Comédia',28),(4,'Peppa Pig',NULL,'Infantil',32),(5,'Whinderson Nunes',NULL,'Comédia',33),(6,'Meu Passado Me Condena',NULL,'Comédia',34),(7,'A Bela e a Fera',NULL,'Infantil',35),(8,'Boca Rosa',NULL,NULL,36),(9,'Harry Potter e a Criança Amaldiçoada',NULL,'Fantasia',37),(10,'Os Miseráveis',NULL,'Drama',38);
 /*!40000 ALTER TABLE `peca` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,7 +281,7 @@ CREATE TABLE `show` (
 
 LOCK TABLES `show` WRITE;
 /*!40000 ALTER TABLE `show` DISABLE KEYS */;
-INSERT INTO `show` VALUES (1,'Desde Aquele Dia','Humberto Gessinger','Rock',2),(2,'Divide','Ed Sheeran','Pop',16),(3,'Anitta','Anitta','Pop',17),(4,'Capital Inicial','Capital Inicial','Rock',18),(5,'Skank','Skank','Pop Rock',19),(6,'Nx Zero','Nx Zero','Pop Rock',21);
+INSERT INTO `show` VALUES (1,'Desde Aquele Dia','Humberto Gessinger','Rock',2),(2,'Divide','Ed Sheeran','Pop',16),(3,'Anitta','Anitta','Pop',17),(4,'Capital Inicial','Capital Inicial','Rock',18),(5,'Skank','Skank','Pop Rock',19),(6,'Nx Zero','Nx Zero','Pop Rock',21),(7,'Tour Diva','Beyonce',NULL,1),(8,'Purpose','Justin Bieber','Pop',29),(9,'Pabblo Vittar','Pabblo Vittar','Pop',30),(10,'Essencial','Rosa de Saron',NULL,31);
 /*!40000 ALTER TABLE `show` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,4 +347,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-03 18:32:57
+-- Dump completed on 2017-06-04 14:09:34
