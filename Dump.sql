@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `ingressos` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `ingressos`;
--- MySQL dump 10.13  Distrib 5.5.55, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: ingressos
+-- Host: localhost    Database: ingressos
 -- ------------------------------------------------------
--- Server version	5.5.55-0ubuntu0.14.04.1
+-- Server version	5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -100,7 +98,7 @@ CREATE TABLE `compra` (
 
 LOCK TABLES `compra` WRITE;
 /*!40000 ALTER TABLE `compra` DISABLE KEYS */;
-INSERT INTO `compra` VALUES (1,12.5,37.5,3,9,'2017-08-02 23:59:00'),(2,119.99,359.97,3,2,'2017-07-01 10:51:00'),(3,49.9,49.9,1,6,'2017-03-03 12:15:00'),(4,25.5,76.5,3,4,'2017-09-12 03:33:00'),(5,100,200,2,10,'2017-06-02 06:52:13'),(6,90,90,1,5,'2017-01-06 13:47:00'),(7,40,40,1,9,'2017-03-04 12:56:23'),(8,70,70,1,11,'2017-05-10 11:17:38'),(9,35,35,1,6,'2017-07-17 18:10:58');
+INSERT INTO `compra` VALUES (1,12.5,37.5,3,9,'2017-08-02 23:59:00'),(2,119.99,359.97,3,2,'2017-07-01 10:51:00'),(3,49.9,49.9,1,6,'2017-03-03 12:15:00'),(4,25.5,76.5,3,4,'2017-09-12 03:33:00'),(5,100,200,2,10,'2017-06-02 06:52:13'),(6,90,90,1,5,'2017-01-06 13:47:00'),(7,40,40,1,9,'2017-03-04 12:56:23'),(8,70,70,1,11,'2017-05-10 11:17:38'),(9,35,35,1,6,'2017-07-17 18:10:58'),(10,12,12,1,6,'2017-06-07 23:59:00');
 /*!40000 ALTER TABLE `compra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,7 +221,7 @@ CREATE TABLE `ingresso` (
 
 LOCK TABLES `ingresso` WRITE;
 /*!40000 ALTER TABLE `ingresso` DISABLE KEYS */;
-INSERT INTO `ingresso` VALUES (1,'A',1,6,4),(2,'A',13,6,4),(3,'3',50,20,1),(4,'Azul',100,5,3),(5,'Vermelho',2,17,2),(6,'B',5,6,4),(7,'Azul',87,17,2),(8,'Amarelo',17,17,2),(9,'1',1,20,1),(10,'2',1,20,1),(11,'Prata',5,37,5),(12,'Prata',6,37,5),(13,'Dourado',65,29,6),(14,'B',180,2,7),(15,'Vip',9,9,8),(16,'Amarelo',125,1,9);
+INSERT INTO `ingresso` VALUES (1,'A',1,6,4),(2,'A',13,6,4),(3,'3',50,20,1),(4,'Azul',100,5,3),(5,'Vermelho',2,17,2),(6,'B',5,6,4),(7,'Azul',87,17,2),(8,'Amarelo',17,17,2),(9,'1',1,20,1),(10,'2',1,20,1),(11,'Prata',5,37,5),(12,'Prata',6,37,5),(13,'Dourado',65,29,6),(14,'B',180,2,7),(15,'Vip',9,9,8),(16,'Amarelo',125,1,9),(17,'C',12,7,10);
 /*!40000 ALTER TABLE `ingresso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,4 +345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-04 14:09:34
+-- Dump completed on 2017-06-04 17:02:54
