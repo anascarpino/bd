@@ -21,9 +21,6 @@ SELECT descricao FROM evento WHERE
 #Quem comprou ingressos estando autenticado em ordem alfabética
 SELECT nome FROM  usuario JOIN autenticacao ON usuario.id_usuario = autenticacao.id_usuario ORDER BY nome ASC;
 
-#Quais foram os eventos para os quais as pessoas não autenticadas compraram ingressos ordenadas por grupos
-#(SELECT nome FROM  usuario JOIN autenticacao ON usuario.id_usuario = autenticacao.id_usuario);
-
 #Quem foram as pessoas que compraram ingressos para o show da Anitta?
 SELECT usuario.nome FROM usuario 
 		JOIN compra ON usuario.id_usuario = compra.id_usuario 
@@ -42,10 +39,45 @@ SELECT * FROM ingresso WHERE id_evento IN
 		(SELECT id_evento FROM evento WHERE id_tipo IN
 				(SELECT id_tipo FROM tipo WHERE nome = "peça"));
 
-#Agrupar os usuarios por ID cuja data de nascimento
-#SELECT nome FROM usuario GROUP BY id_usuario HAVING dNascimento;
-
 #Quantos ingressos Celso comprou
 SELECT COUNT(*) FROM ingresso WHERE id_compra IN
 		(SELECT id_compra FROM compra WHERE id_usuario IN 
 				(SELECT id_usuario FROM usuario WHERE nome = "Celso Celante"));
+                
+
+#Quais foram os usuarios que pagaram em média mais que 40 reais e qual foi a média de consumo deles
+SELECT nome, usuario.id_usuario, AVG(valor_total) FROM compra JOIN usuario ON compra.id_usuario =  usuario.id_usuario 
+		GROUP BY id_usuario HAVING AVG(valor_total) > 40 ORDER BY AVG(valor_total) DESC;
+
+#Todos os usuarios com o valor de suas compras (quem tiver) ordenado pelo nome do usuario
+SELECT nome, valor_total FROM usuario LEFT JOIN compra ON usuario.id_usuario = compra.id_usuario ORDER BY nome;
+
+#Todos os usuários e os e-mails
+SELECT nome, email, login FROM usuario LEFT JOIN autenticacao ON usuario.id_usuario = autenticacao.id_usuario;
+
+#Nome e e-mail de quem fez compras que totalizaram mais de 100 reais
+SELECT nome, email FROM usuario WHERE EXISTS 
+		(SELECT * FROM compra WHERE 
+				usuario.id_usuario = compra.id_usuario AND 
+                valor_total > 100);
+
+#As datas de todos os jogos do Flamengo de qualquer esporte
+SELECT dataEvento FROM evento WHERE EXISTS
+		(SELECT * FROM esporte WHERE
+				evento.id_evento = esporte.id_evento AND
+                (equipe1 = "Flamengo" OR equipe2 = "Flamengo"));
+                
+#Quais os três evento tiveram a maior quantidade de ingressos vendidos
+SELECT descricao, SUM(quantidade) FROM evento 
+		JOIN ingresso ON evento.id_evento = ingresso.id_evento 
+        JOIN compra ON ingresso.id_compra = compra.id_compra 
+			GROUP BY evento.id_evento
+            ORDER BY SUM(quantidade) DESC
+            LIMIT 3;
+            
+#Quais pessoas compraram ingresso para jogos de basquete
+SELECT DISTINCT nome FROM usuario WHERE id_usuario IN
+		(SELECT id_usuario FROM compra WHERE id_compra IN
+				(SELECT id_compra FROM ingresso WHERE id_evento IN
+						(SELECT id_evento FROM evento WHERE id_evento IN
+								(SELECT id_evento FROM esporte WHERE nome = "Basquete"))));
