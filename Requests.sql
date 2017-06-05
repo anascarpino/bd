@@ -68,11 +68,10 @@ SELECT dataEvento FROM evento WHERE EXISTS
                 (equipe1 = "Flamengo" OR equipe2 = "Flamengo"));
                 
 #Quais os três evento tiveram a maior quantidade de ingressos vendidos
-SELECT descricao, SUM(quantidade) FROM evento 
+SELECT descricao, COUNT(ingresso.id_ingresso) FROM evento 
 		JOIN ingresso ON evento.id_evento = ingresso.id_evento 
-        JOIN compra ON ingresso.id_compra = compra.id_compra 
 			GROUP BY evento.id_evento
-            ORDER BY SUM(quantidade) DESC
+            ORDER BY COUNT(ingresso.id_ingresso) DESC
             LIMIT 3;
             
 #Quais pessoas compraram ingresso para jogos de basquete
