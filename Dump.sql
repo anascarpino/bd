@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `ingressos` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `ingressos`;
+-- MySQL dump 10.13  Distrib 5.5.55, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: ingressos
+-- Host: 127.0.0.1    Database: ingressos
 -- ------------------------------------------------------
--- Server version	5.7.18-log
+-- Server version	5.5.55-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -226,6 +228,34 @@ INSERT INTO `ingresso` VALUES (1,'A',1,6,4),(2,'A',13,6,4),(3,'3',50,20,1),(4,'A
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `jogosVolei`
+--
+
+DROP TABLE IF EXISTS `jogosVolei`;
+/*!50001 DROP VIEW IF EXISTS `jogosVolei`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `jogosVolei` (
+  `nome` tinyint NOT NULL,
+  `dataEvento` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `logins`
+--
+
+DROP TABLE IF EXISTS `logins`;
+/*!50001 DROP VIEW IF EXISTS `logins`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `logins` (
+  `nome` tinyint NOT NULL,
+  `login` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `peca`
 --
 
@@ -335,6 +365,44 @@ LOCK TABLES `usuario` WRITE;
 INSERT INTO `usuario` VALUES (1,'Joana da Silva','13815889632','Rua da Baleia','33439090','joanasilva@mail.com','1973-05-12'),(2,'Luiz Meirelles','13585245698','Paschoal Del Maestro','33375669','lcoutojunior@gmail.com','1991-07-12'),(3,'Ana Beatriz Scarpino','15935725856','',NULL,'anascarpino@gmail.com','1991-11-25'),(4,'João Mário Soares','23647815923','Rua da Fiação, 73','33401236','jmoicano@gmail.com','1989-07-14'),(5,'Rodrigo Biancard','21423647859','Rua Esperança, 34, apto 101.',NULL,'rb@gmail.com',NULL),(6,'Luana Vettler','25814736926',NULL,'33694569','luanavetler@gmail.com','1993-02-20'),(7,'Lucas Augusto Santos',NULL,'Rua Teixeira de Freitas','998521236','lucasaugsantos@gmail.com','1992-04-11'),(8,'César Bernabé','98754427812','Rua Marilândia',NULL,NULL,NULL),(9,'Celso Celante','12345678912','Rua Bairro República','985692424','celsocelante@gmail.com','1994-05-26'),(10,'Silas Campos',NULL,'Rua Cachoeiro de Itapemirim, 76',NULL,'silascampos@gmail.com','1993-07-13'),(11,'Breno Zupeli',NULL,NULL,'998123456',NULL,'1995-07-18');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `jogosVolei`
+--
+
+/*!50001 DROP TABLE IF EXISTS `jogosVolei`*/;
+/*!50001 DROP VIEW IF EXISTS `jogosVolei`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `jogosVolei` AS select `esporte`.`nome` AS `nome`,`evento`.`dataEvento` AS `dataEvento` from (`esporte` join `evento` on((`esporte`.`id_evento` = `evento`.`id_evento`))) where (`esporte`.`nome` = 'Volei') */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `logins`
+--
+
+/*!50001 DROP TABLE IF EXISTS `logins`*/;
+/*!50001 DROP VIEW IF EXISTS `logins`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `logins` AS select `usuario`.`nome` AS `nome`,`autenticacao`.`login` AS `login` from (`usuario` join `autenticacao` on((`usuario`.`id_usuario` = `autenticacao`.`id_usuario`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -345,4 +413,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-04 18:25:36
+-- Dump completed on 2017-06-05 10:32:30
